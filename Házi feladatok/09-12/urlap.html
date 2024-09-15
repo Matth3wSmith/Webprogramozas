@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Űrlap</title>
+    <style>
+        body {
+            background-image: url(city.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            background-position-y: -200px;
+        }
+        #urlap{
+            
+            background-image: url(trianglify-blue.png);
+            background-repeat: no-repeat;
+            background-size:cover;
+            
+            margin:auto;
+            padding: 5%;
+            margin-top: 50px;
+            width: 60%;
+            max-width: 800px;
+            min-width: 400px;
+            text-align: center;
+            box-shadow: 15px 20px 25px 10px rgba(34, 2, 75, 0.596);
+
+        }
+
+        label,input{
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 120%;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .bevitel{
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div id="urlap">
+            <label for="nev" class="felirat">Neved:</label><br>
+            <input type="text" id="nev" name="nev" class="bevitel"><br>
+            <label for="email">E-mail címed:</label><br>
+            <input type="email" id="email" name="email" class="bevitel"><br>
+            <label for="date">Születési idő:</label><br>
+            <input type="date" id="date" class="bevitel"></input><br>
+            <input type="submit" id="submit"></input>
+
+        </div>
+    </form>
+</body>
+</html>
