@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label,input{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="get">
+
+        <label for="Nev">Név:</label>
+        <input type="text" id="Nev" name="Nev" autofocus maxlength="50"><br>
+
+        <label for="jelszo">Jelszó:</label>
+        <input type="password" id="jelszo" name="jelszo"><br>
+
+        <label for="valasztas">Válassz:</label>
+        <select name="valasztas" id="valasztas">
+
+            <option value="ferfi">Férfi</option>
+            <option value="no">Nő</option>
+            <option value="nb">Nem bináris</option>
+            <option value="a" selected>Apache helicopter</option>
+
+        </select>
+
+        <input type="submit">
+    </form>
+</body>
+</html>
