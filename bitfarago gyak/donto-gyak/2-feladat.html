@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottó sorsolás</title>
+    <style>
+        p{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Lottó sorsolás</p>
+        <p>Mennyi számból húzzon a gép?</p>
+        <input type="text" id="max">
+        <p>Mennyit húzzon a gép?</p>
+        <input type="text" id="mennyiseg">
+        <p>Add meg a saját számaid (szóközzel elválasztva)</p>
+        <input type="text" id="szamok">
+
+        <button onclick="Sorsolas()">Sorsolás</button>
+
+        <p id="sorsolt">Sorsolt számok:</p>
+        <p id="sajat">Te számaid:</p>
+        <p id="talalat">Találatok:</p>
+    </div>
+
+    <script src="2-feladat.js"></script>
+</body>
+</html>
