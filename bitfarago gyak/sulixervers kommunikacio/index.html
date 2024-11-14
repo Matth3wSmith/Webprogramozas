@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyakorlás</title>
+    <style>
+        #adatok{
+            border: 2px solid black;
+            width: 300px;
+            text-align: center;
+            padding: 10px;
+        }
+        #adatok > *{
+            margin-block: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="loadDoc()">Betöltés GET</button>
+    <button onclick="loadDocPOST()">Betöltés POST</button>
+    <p id="demo"></p>
+
+    <div id="adatok">
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
