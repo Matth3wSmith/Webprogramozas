@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Név</title>
+    <style>
+
+        @keyframes m {
+            0% {background-color: #f12711}
+            50% {background-color: }
+            80% {background-color: #f5af19}
+            0% {background-color: #f12711}
+        }
+        .container{
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+        }
+
+        .betu{
+            border: 2px black solid;
+            text-align: center;
+            font-size: 100px;
+            padding: 10px;
+        }
+        .M{
+            
+            animation-name: m;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
+    </style>
+</head>
+<body>
+    <!-- saját keresztnév betűit külön dobozokba zárva jelenitsük meg és animáljuk meg -->
+
+    <div class="container">
+        <div class="M betu">M</div>
+        <div class="A betu">A</div>
+        <div class="T betu">T</div>
+        <div class="T betu">T</div>
+        <div class="H betu">H</div>
+        <div class="E betu">E</div>
+        <div class="W betu">W</div>
+    </div>
+</body>
+</html>
