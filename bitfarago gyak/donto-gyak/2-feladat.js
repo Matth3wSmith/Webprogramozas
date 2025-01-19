@@ -6,26 +6,33 @@ function Sorsolas(){
     let sorsoltP=document.getElementById("sorsolt")
     let sajatP=document.getElementById("sajat")
     let talalatP=document.getElementById("talalat")
-    let sajatString = document.getElementById("szamok").value.split(" ")
-    sajatNumber=sajatString.map(szam => {
+    let sajatNumber = document.getElementById("szamok").value.split(" ")
+
+    talalatP.innerHTML=0;
+    sajatP.innerHTML="";
+    sorsoltP.innerHTML="";
+
+    sajatNumber=sajatNumber.map(szam => {
         return Number(szam)
     })
+    sajatNumber=sajatNumber.sort()
     let sorsolt=[]
     for (let i = 0; i< mennyiseg; i++){
         let random=Math.floor(Math.random()*max+1);
-        while(random in sorsolt){
-            random=Math.random()*max+1;
+
+        while (sorsolt.includes(random)){
+            random=Math.floor(Math.random()*max+1);
         }
+
         sorsolt[i]=random;
-        sorsoltP.innerHTML+=random+" "
-        sajatP.innerHTML+=sajatString[i]+" "
-        console.log(sajatNumber, random)
-        if(random in sajatNumber){
+        sorsoltP.innerHTML+=sorsolt[i]+", "
+        sajatP.innerHTML+=sajatNumber[i]+", "
+        if (sajatNumber.includes(sorsolt[i])){
             talaltok++
         }
     }
     
-    talalatP.innerHTML+=talaltok+" "
+    talalatP.innerHTML=talaltok+" "
 
 
 }

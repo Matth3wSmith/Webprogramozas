@@ -5,7 +5,7 @@ function loadDoc() {
       console.log(JSON.parse(this.responseText))
       document.getElementById("demo").innerHTML = this.responseText;
 
-
+      console.log(xhttp)
       let valasz = JSON.parse(this.responseText);
 
       function Kartya(divID,nev,szuletes,kepUrl,email,telefonszam){

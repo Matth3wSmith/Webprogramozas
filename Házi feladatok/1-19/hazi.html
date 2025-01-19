@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Házi</title>
+    <style>
+        .negyzet{
+            width: 40px;
+            height: 40px;
+            border: 1px solid black;
+            background-color: white;
+            display: inline-block;
+
+        }
+        .feher{
+            background-color: white;
+        }
+        .fekete{
+            background-color: black;
+        }
+        .sor {
+            width: fit-content;
+            height: fit-content;
+            margin-bottom: -4px;
+
+        }
+    </style>
+</head>
+<body onload="onload()">
+    <div id="tabla">
+
+    </div>
+
+    <script>
+        function onload(){
+            let tabla = document.getElementById("tabla")
+            for (let i = 0; i < 20; i++){
+                let tempsor=document.createElement("div")
+                tempsor.classList.add("sor")
+                for (let k = 0; k < 20; k++){
+                    let negyzet = document.createElement("div")
+                    negyzet.classList.add("negyzet")
+                    negyzet.addEventListener("click",atszinez)
+                    tempsor.appendChild(negyzet)
+                    negyzet.feher=true
+                }
+                tabla.appendChild(tempsor)
+            }
+
+        }
+        function atszinez(){
+            if (event.target.feher){
+                event.target.classList.remove("feher")
+                event.target.classList.add("fekete")
+                event.target.feher=false
+            }
+            else{
+                event.target.classList.remove("fekete")
+                event.target.classList.add("feher")
+                event.target.feher=true
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
