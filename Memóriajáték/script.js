@@ -1,0 +1,1 @@
+"mcisti.jpg","cartman.png","szav.jpg","rezsi.jpg","fidesz.jpg","jobbik.jpg","gurcsany.jpg","tim.jpg","biran.jpg","michaelscott.png","kermitclorox.jpg","mcisti3.jpg","mcisti2.jpg"
