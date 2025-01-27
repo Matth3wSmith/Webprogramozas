@@ -9,9 +9,10 @@
     width: 150px;
     height: 200px;
     display: inline-block;
-    background-image: url(img/gurcsany.jpg);
+    _background-image: url(img/gurcsany.jpg);
     background-size: cover;
     background-position: center;
+    margin-inline: 4px;
 
 }
 
