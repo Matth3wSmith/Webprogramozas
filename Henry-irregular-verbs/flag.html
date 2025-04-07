@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animált Brit Zászló</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+        }
+        .flag {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #012169;
+            overflow: hidden;
+            animation: wave 2s infinite ease-in-out alternate;
+        }
+        .diagonal-white, .diagonal-red {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .diagonal-white::before, .diagonal-white::after {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 15%;
+            background-color: white;
+            top: 50%;
+            left: -25%;
+        }
+        .diagonal-white::before {
+            transform: rotate(30deg);
+        }
+        .diagonal-white::after {
+            transform: rotate(-30deg);
+        }
+        .diagonal-red::before, .diagonal-red::after {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 7.5%;
+            background-color: red;
+            top: 50%;
+            left: -25%;
+        }
+        .diagonal-red::before {
+            transform: rotate(30deg) translateY(-5px);
+        }
+        .diagonal-red::after {
+            transform: rotate(-30deg) translateY(5px);
+        }
+        .cross {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .cross::before, .cross::after {
+            content: "";
+            position: absolute;
+            background-color: white;
+        }
+        .cross::before {
+            width: 100%;
+            height: 20%;
+            top: 40%;
+        }
+        .cross::after {
+            width: 20%;
+            height: 100%;
+            left: 40%;
+        }
+        .red-horizontal, .red-vertical {
+            position: absolute;
+            background-color: red;
+        }
+        .red-horizontal {
+            width: 100%;
+            height: 12%;
+            top: 44%;
+        }
+        .red-vertical {
+            width: 12%;
+            height: 100%;
+            left: 44%;
+        }
+        @keyframes wave {
+            0% { transform: skewY(1deg); }
+            100% { transform: skewY(-1deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag">
+        <div class="diagonal-white"></div>
+        <div class="diagonal-red"></div>
+        <div class="cross">
+            <div class="red-horizontal"></div>
+            <div class="red-vertical"></div>
+        </div>
+    </div>
+</body>
+</html>
