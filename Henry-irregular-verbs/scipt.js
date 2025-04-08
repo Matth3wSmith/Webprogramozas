@@ -101,14 +101,29 @@ let mennyiseg = 0;
 let answers = [0,0];
 let verbBox;
 let repulo;
+let hibaBox;
 
 function main(){
 }
 
 function inditas(){
     let file =  document.getElementById("file").files[0];
+    let adatok;
     if (file){
+        const reader = new FileReader();
 
+        reader.onload = function(e) {
+            //fileContent.textContent = e.target.result;
+            adatok = e.target.result;
+
+
+        };
+
+        reader.onerror = function(e) {
+            console.log("Hiba történt a fájl beolvasása közben.");
+        };
+
+        reader.readAsText(file); // szövegfájlt olvasunk be
     }
     else{
         //TOAST felnyitása
@@ -122,7 +137,8 @@ function inditas(){
     verbDiv.classList.remove("hidden")
     //Siman kozepen a szöveg
     /*verbBox = verbDiv.children[0]*/
-
+    //Hibák és százalék kiírása
+    hibaBox = verbDiv.children[0]
     //Repülő megjelenítése
     repulo = document.getElementsByClassName("cloud")[0];
     repulo.classList.add("repuloBe");
@@ -171,9 +187,11 @@ function ellenorzes(){
         repulo.classList.add("repuloKi");
 
         repulo.addEventListener("animationend",eltunes);
+        hibaBox.innerText="Your Result: "+answers[0]/mennyiseg*100+"%";
         mennyiseg=0;
         kiirt=0;
         answers=[0,0];
+
     }
 }
 
