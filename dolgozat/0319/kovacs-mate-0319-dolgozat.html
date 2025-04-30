@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jármű</title>
+</head>
+<body>
+    
+    <script>
+
+        class Jarmu {
+            constructor(marka,modell,szin){
+                this.marka=marka;
+                this.modell=modell;
+                this.szin=szin;
+                this.privSebesseg=0;
+            }
+            set sebesseg(sebesseg){
+                if (sebesseg>=0){
+                    this.privSebesseg=sebesseg;
+                }
+                
+            }
+            get sebesseg(){
+                return this.privSebesseg;
+            }
+            
+            gyorsit(mennyi){
+                this.privSebesseg+=mennyi;
+            }
+            lassit(mennyi){
+                if (this.privSebesseg-mennyi<0){
+                    this.privSebesseg=0;
+                }
+                else{
+                    this.privSebesseg-=mennyi;
+                }
+            }
+            dudal(){
+                console.log("Dud-dud!");
+            }
+            leir(){
+                return `Ez egy ${this.szin} színű ${this.marka} ${this.modell}. A sebessége jelenelg ${this.privSebesseg} km/h.`;
+            }
+        }
+
+        class Auto extends Jarmu{
+            constructor(marka,modell,szin,ajto){
+                super(marka,modell,szin);
+                this.ajtokSzama=ajto;
+            }
+            leir(){
+                return `Ez egy ${this.szin} színű ${this.marka} ${this.modell}. A sebessége jelenelg ${this.privSebesseg} km/h. Ez egy autó ${this.ajtokSzama} ajtóval.`;
+            }
+        }
+        let jarmu1=new Jarmu("Általános","Jármű","szürke");
+        let auto1 = new Auto("Toyota","Corolla","piros",5);
+        
+
+        console.log(jarmu1.marka);
+        console.log(auto1.modell);
+        console.log(auto1.szin);
+        console.log(auto1.ajtokSzama);
+
+
+        auto1.sebesseg = 30;
+        console.log(auto1.sebesseg);
+        auto1.sebesseg = -10;
+
+        console.log(jarmu1.leir());
+        console.log(auto1.leir());
+        jarmu1.gyorsit(10);
+        auto1.gyorsit(25);
+        console.log(auto1.leir());
+        auto1.lassit(5);
+        console.log(auto1.leir());
+        auto1.dudal();
+
+
+    </script>
+</body>
+</html>
