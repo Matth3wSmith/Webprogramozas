@@ -1,1 +1,0 @@
-SELECT COUNT(melynap) FROM naptar WHERE melynap IN (6,7);

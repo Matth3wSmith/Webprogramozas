@@ -1,1 +1,0 @@
-SELECT nev FROM diak WHERE NOT fiu ORDER BY 1;
