@@ -5,16 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RGB</title>
     <script src="adatok.js"></script>
+    <style>
+        .feladat{
+            border: 1px solid black;
+            width: max-content;
+            padding: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+        input{
+            margin-block: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>RGB színek érettségi feladat megoldás</h1>
+
+    <div class="feladat">
+        <h3>2. feladat</h3>
+        <p>Kérem egy képpont adatait!</p>
+        <label for="sor">Sor:</label>
+        <input type="number" name="sor" id="sor" max="360" min="1"><br>
+        <label for="oszlop">Oszlop:</label>
+        <input type="number" name="oszlop" id="oszlop" max="640" min="1">
+        <p>A képpont színe <span id="feladat2"></span></p>
+        <button type="button" onclick="masodik()">2. feladat</button>
+    </div>
+    <div class="feladat">
+        <h3>3. feladat</h3>
+        <p id="">A világos képpontok száma: <span id="feladat3"></span></p>
+        <button type="button" onclick="harmadik()">3. feladat</button>
+
+    </div>
+    <div class="feladat">
+        <h3>4. feladat</h3>
+        <p id="">A legsötétebb pont RGB összege: <span id="feladat4"></span></p>
+        <p>A legsötétebb pixelek színe:</p>
+        <ul id="sotetek">
+        </ul>
+        <button type="button" onclick="negyedik()">4. feladat</button>
+
+    </div>
     <script>
-        
+        //1. feladat
         class Pixel{
             constructor(r,g,b){
                 this.r = r;
                 this.g = g;
                 this.b = b;
+            }
+            rgb(){
+                return "RGB("+this.r+","+this.g+","+this.b+")"
+            }
+            rgbSum(){
+                return this.r+this.g+this.b;
+            }
+            vilagos(){
+                return this.rgbSum()>600;
             }
         }
 
@@ -31,8 +78,35 @@
                 return new Pixel(parseInt(vag[0]),parseInt(vag[1]),parseInt(vag[2]),)
             }))
         }
-        console.log(pixelek)
 
+        //2. feladat
+        function masodik(){
+            let feladat2Span = document.getElementById("feladat2")
+            let kertSor = parseInt(document.getElementById("sor").value)-1;
+            let kertOszlop = parseInt(document.getElementById("oszlop").value)-1;
+            let pixel = pixelek[kertSor][kertOszlop];
+
+            feladat2Span.style.color = pixel.rgb();
+            feladat2Span.innerHTML=pixel.rgb();
+
+
+        }
+
+        //3. feladat
+        function harmadik(){
+            let darab = pixelek.flat().filter(x => x.vilagos()).length;
+            document.querySelector("#feladat3").innerHTML=darab
+        }
+
+        //4. feladat
+        function negyedik(){
+            let legsotetebb = pixelek.flat().map(x => x.rgbSum()).sort((x, y) => x - y)[0]  ;
+            document.querySelector("#feladat4").innerHTML=legsotetebb;
+            let sotetek = pixelek.flat().filter(x => x.rgbSum()==legsotetebb);
+            sotetek.forEach( function(pixel) {
+                document.querySelector("#sotetek").innerHTML+="<li>"+pixel.rgb()+"</li>";
+            })
+        }
 
 
     </script>
