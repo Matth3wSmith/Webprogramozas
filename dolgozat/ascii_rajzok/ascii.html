@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII</title>
+    <script src="szg_t.js"></script>
+    <script src="konyv.js"></script>
+    <script src="konyv_t.js"></script>
+    <style>
+        .f{
+            border: 2px solid black;
+            margin: 10px;
+            width: fit-content;
+            padding: 10px;
+        }
+        label{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="f">
+        <h1>1. feladat</h1>
+        <pre id="f1"></pre>
+    </div>
+    <div class="f">
+        <h1>2. feladat</h1>
+        <label for="ismetles">Kérem adja meg az ismétlések számát: </label>
+        <input type="number" id="ismetles"> <button onclick= "ismetles()">Kiírás</button>
+        <pre id="f2"></pre>
+    </div>
+    <div class="f">
+        <h1>4. feladat</h1>
+        <pre id="f4"></pre>
+    </div>
+    <div class="f">
+        <h1>5. feladat</h1>
+        <label for="tomor">Kérem adja meg a tömörített ábra féjlnevét: </label>
+        <input type="text" name="tomor" id="tomor"><br>
+        <label for="sima">Kérem adja meg a tömörítetlen ábra féjlnevét: </label>
+        <input type="text" name="sima" id="sima"><br>
+        <button onclick="arany()">Futtatás</button>
+        <p id="f5a"></p>
+        <p id="f5b"></p>
+        <p id="f5c"></p>
+
+    </div>
+    <div class="f">
+        <h1>6. feladat</h1>
+        <p id="f6a"></p>
+        <p id="f6b"></p>
+        <p id="f6c"></p>
+
+    </div>
+    <script>
+        //1. feladat
+        document.querySelector("#f1").innerHTML = konyv;
+
+        //2. feladat
+        function ismetles(){
+            let szoveg = ""
+            let ism = Number(document.querySelector("#ismetles").value)
+            konyv.split("\n").map(x => szoveg+= (x+"\t|").repeat(ism) + "\n" )
+            document.querySelector("#f2").innerHTML=szoveg
+            
+        }
+
+        //3. feladat
+        function atalakit(sor){
+            let kesz = "";
+            sor.match(/.{2}/g).map(x =>  kesz += x[1].repeat(Number(x[0])) );
+
+            return kesz;
+        }
+
+        //4. feladat
+        let szg = szg_t.split("\n").map(x => atalakit(x)+"\n");
+        document.querySelector("#f4").innerHTML=szg;
+
+        //5. feladat
+        function arany(){
+            let tomorHossz = 0;
+            konyv_t.split("\n").map(x => tomorHossz+=x.length);
+            let simaHossz = 0;
+            konyv.split("\n").map(x => simaHossz+=x.length);
+
+            document.querySelector("#f5a").innerHTML= "A karakterek száma a tömörített állományban: "+tomorHossz;
+            document.querySelector("#f5b").innerHTML= "A karakterek száma a tömörítetlen állományban: "+simaHossz;
+            document.querySelector("#f5c").innerHTML = "A tömörítési arány: "+ (tomorHossz/simaHossz).toFixed(2);
+
+        }
+
+        //6. feladat
+        document.querySelector("#f6a").innerHTML = "Az ábra magaassága sorokban: "+konyv_t.split("\n").length
+        document.querySelector("#f6b").innerHTML = "Az ábra szélessége karakterekben: " + Math.max(...konyv_t.split("\n").map(x => x.length));
+        let blokk = 0;
+        konyv_t.split("\n").map(x => blokk+=x.length/2)
+        document.querySelector("#f6c").innerHTML = "A blokkok száma: " + blokk;
+
+    </script>
+</body>
+</html>

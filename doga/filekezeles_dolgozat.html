@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    <div>Dolgozat</div>
+    <button onclick="nevKuldes()"  >
+        0. feladat lekerese
+    </button>
+    <p id="nulladik"></p>
+    <button onclick="elso()"  >
+        1. feladat lekerese
+    </button>
+    <p id="elso"></p>
+    <div>
+        <p>Űrlap 1. feladathoz</p>
+        <div>
+            <form action="">
+                    <label for="">Adj meg egy számot:</label>
+                    <input type="number" id="ora">
+                    <button type="button" onclick="elsoKuldes()">Küldés</button>
+            </form>
+        </div>
+    </div>
+    <p id="">Kapott eredmény: <span id="elsoVege"></span></p>
+    <button onclick="masodik()"  >
+        2. feladat lekerese
+    </button>
+    <p id="masodik"></p>
+    
+    <img id="masodikMegoldas" src="" alt="">
+
+    <button onclick="harmadik()"  >
+        3. feladat lekerese
+    </button>
+    <p id="harmadik"></p>
+    <div>
+        <form action="">
+
+            <label for="">Emberek száma</label>
+            <input type="number" name="" id=""><br>
+
+            <label for="">Milyen adatok</label>
+            <input type="text" name="" id=""><br>
+            <input type="text" name="" id=""><br>
+            <input type="text" name="" id=""><br>
+            <input type="text" name="" id=""><br>
+        </form>
+    </div>
+    <script>
+        
+        function nevKuldes(){
+            let nulladik = document.getElementById("nulladik");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.response);
+                nulladik.innerHTML+=this.response;
+            }
+            nevKuldes.open("GET"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate")
+            nevKuldes.send();
+
+        }
+        function elso(){
+            let elso = document.getElementById("elso");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.response);
+                elso.innerHTML+=this.response;
+            }
+            nevKuldes.open("GET"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&feladat=1")
+            nevKuldes.send();
+
+        }
+        function elsoKuldes(){
+            let elso = document.getElementById("elsoVege");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.response);
+                elso.innerHTML=this.response;
+            }
+            nevKuldes.open("POST"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&akcio=ido")
+            nevKuldes.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            nevKuldes.send("ora="+document.getElementById("ora").value);
+
+        }
+
+        function masodik(){
+            let elso = document.getElementById("masodik");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.response);
+                elso.innerHTML+=this.response;
+            }
+            nevKuldes.open("GET"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&feladat=2")
+            nevKuldes.send();
+
+            const muvelet = new XMLHttpRequest();
+            muvelet.onload=function(){
+                console.log(this.response);
+                elso.innerHTML+="<br> A művelet: "+this.response;
+                masodikKuldes(9);
+                
+            }
+            muvelet.open("GET"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&akcio=muvelet")
+            muvelet.send();
+        }
+        function masodikKuldes(ertek){
+            let elso = document.getElementById("masodikMegoldas");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.responseXML);
+                console.log(this.responseXML.getElementsByTagName("forras")[0].innerHTML);
+                elso.src=this.responseXML.getElementsByTagName("forras")[0].innerHTML;
+            }
+            nevKuldes.open("POST"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&akcio=muvelet")
+            nevKuldes.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            nevKuldes.send("ertek="+ertek);
+
+        }
+        function harmadik(){
+            let elso = document.getElementById("harmadik");
+            const nevKuldes = new XMLHttpRequest();
+            nevKuldes.onload=function(){
+                console.log(this.response);
+                elso.innerHTML+=this.response;
+            }
+            nevKuldes.open("GET"," /~pepa/dolgozat/dolgozat.php?nev=kovacsmate&feladat=3")
+            nevKuldes.send();
+
+            
+        }
+    </script>
+</body>
+</html>
