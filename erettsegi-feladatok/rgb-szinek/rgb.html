@@ -16,6 +16,14 @@
         input{
             margin-block: 10px;
         }
+        .pixel{
+            width: 1px;
+            height: 1px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+
     </style>
 </head>
 <body>
@@ -46,6 +54,17 @@
         <button type="button" onclick="negyedik()">4. feladat</button>
 
     </div>
+    <div class="feladat">
+        <h3>5. feladat</h3>
+        <p id="">A felhő legfelső sora: <span id="feladat5a"></span></p>
+        <p id="">A felhő legalsó sora: <span id="feladat5b"></span></p>
+
+        <button type="button" onclick="hatodik()">6. feladat</button>
+
+    </div>
+    <table id="kep">
+        
+    </table>
     <script>
         //1. feladat
         class Pixel{
@@ -106,6 +125,54 @@
             sotetek.forEach( function(pixel) {
                 document.querySelector("#sotetek").innerHTML+="<li>"+pixel.rgb()+"</li>";
             })
+
+        }
+        //6. feladat
+        function hatodik(){
+            let elso = -1;
+            let utolsoTalalat;
+            for(let i = 0; i < sor; i++){
+                if(elso==-1 && hatar(i,10)){
+                    elsoTalalat = i;
+                }
+                else if (hatar(i,10)){
+                    utolsoTalalat=i
+                }
+            }
+            document.querySelector("#feladat5a").innerHTML=elsoTalalat+1;
+            document.querySelector("#feladat5b").innerHTML=utolsoTalalat+1;
+            kep();
+        }
+
+        //5. feladat
+        function hatar(sorszam, elteres){
+            return pixelek[sorszam].some(
+                function(pixel, i, tomb){
+                    //console.log(i);
+                    if(i+1<oszlop){
+                        return Math.abs(pixel.b-tomb[i+1].b) > elteres;
+                    }
+                    else{
+                        return false;
+                    }
+
+                }
+            );
+        }
+
+
+        function kep(){
+            let kepDiv = document.getElementById("kep");
+            for(let i = 0; i < sor; i++){
+                let sor = document.createElement("tr");
+                for (let k = 0; k < oszlop; k++){
+                    let pixel = document.createElement("td");
+                    pixel.className="pixel";
+                    pixel.style.backgroundColor = pixelek[i][k].rgb();
+                    sor.appendChild(pixel);
+                }
+                kepDiv.appendChild(sor);    
+            }
         }
 
 

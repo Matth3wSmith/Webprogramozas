@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morze</title>
+    <script src = "script.js"></script>
+    <script src = "morze.js"></script>
+    <script src = "morzeabc.js"></script>
+    <style>
+        .f{
+            border: 2px solid black;
+            margin: 10px;
+            width: fit-content;
+            padding: 10px;
+        }
+        label{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class = "f">
+        <h2>3. feladat</h2>
+        <p id="f3"></p>
+    </div>
+    <div class = "f">
+        <h2>4. feladat</h2>
+        <label for="karakter">Kérek egy karakter: </label>
+        <input type="text" name="karakter" id="karakter">
+        <button onclick="karakterKeres()">Keresés</button>
+        <p id="f4"></p>
+    </div>
+    <div class = "f">
+        <h2>7. feladat</h2>
+        <p id="f7"></p>
+    </div>
+    <div class = "f">
+        <h2>8. feladat</h2>
+        <p id="f8"></p>
+    </div>
+    <div class = "f">
+        <h2>9. feladat</h2>
+        <p id="f9">Arisztotelséz idézetei:</p>
+        <ol id="lista">
+
+        </ol>
+    </div>
+
+    <script>
+        //2. feladat
+        let abc = {};
+        let morzeAbc = {};
+        let vagas = nyersAbc.split("\n");
+        vagas.shift();
+        vagas.map(x => {
+            abc[x.split("\t")[0]] = x.split("\t")[1];
+            morzeAbc[x.split("\t")[1]] = x.split("\t")[0];
+        });
+        console.log(abc);
+
+        //5. feladat
+        let jelek = nyersJelek.split("\n");
+
+        //3. feladat
+        document.querySelector("#f3").innerHTML = `A morze abc ${Object.keys(abc).length} db karakter kódját tartalmazza.`
+
+        //4. feladat
+        function karakterKeres(){
+            let karakter = document.querySelector("#karakter").value
+            try{
+                document.querySelector("#f4").innerHTML = "A " + karakter + " karakter morze kódja: " + abc[karakter];
+            }
+            catch (error){
+                document.querySelector("#f4").innerHTML = "Nem található a kódtárban ilyen karakter!"
+            }
+        }
+
+        //6. feladat
+        function Morze2Szöveg(szoveg){
+            let kesz = "";
+            szoveg.split(/\s{7}/).map(x => {
+                x.split(/\s{3}/).map(y => y!="" ? kesz += morzeAbc[y]: kesz += "" );
+                kesz+=" ";
+            });
+            return kesz
+        }
+
+        //7. feladat
+        document.querySelector("#f7").innerHTML = "Az első idézet szerzője: "+ Morze2Szöveg(jelek[0].split(";")[0]);
+
+        //8. feladat
+        let maxHossz = Math.max(...jelek.map(x => x.split(";")[1].split(/ {7}/).length))
+        let idezet = jelek.filter(x => x.split(";")[1].split(/ {7}/).length == maxHossz);
+        document.querySelector("#f8").innerHTML = "A leghosszabb idézet szerzője és az idézet: "+ Morze2Szöveg(idezet[0].split(";")[0]) + ": " + Morze2Szöveg(idezet[0].split(";")[1])
+
+        //9. feladat
+        let arisztot = jelek.filter(x =>  Morze2Szöveg(x.split(";")[0]) == "ARISZTOTELÉSZ ").map(x => Morze2Szöveg(x.split(";")[1]));
+        arisztot.map(x =>{
+            let li = document.createElement("li");
+            li.innerHTML = x;
+            document.querySelector("#f9").appendChild(li)
+
+        })
+
+        //10. feladat
+        let forditas = "";
+        jelek.map(x => {
+            forditas += Morze2Szöveg(x.split(";")[0])+":"+Morze2Szöveg(x.split(";")[1])+"\n";
+        })
+
+    </script>
+</body>
+</html>
